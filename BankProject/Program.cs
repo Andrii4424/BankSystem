@@ -3,7 +3,6 @@ using BankServicesContracts.ServicesContracts;
 using System.Globalization;
 using BankProject.Middleware;
 using BankServicesContracts.RepositoryContracts;
-using BankData.Repository;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

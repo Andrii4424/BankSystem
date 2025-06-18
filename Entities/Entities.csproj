@@ -14,8 +14,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.PersonsEntites
+namespace Core.Domain.Entities
 {
-    public class UserEntity :IHasId
+    public class UserEntity : IHasId
     {
         [Key]
         public int Id { get; init; }
@@ -45,7 +45,7 @@ namespace Entities.PersonsEntites
 
         public UserEntity() { }
 
-        public UserEntity(int bankId, string financalNumber, string email, string fullName, int age, string nationality, string gender, 
+        public UserEntity(int bankId, string financalNumber, string email, string fullName, int age, string nationality, string gender,
             bool isEmployeed, string? jobTitle)
         {
             BankId = bankId;

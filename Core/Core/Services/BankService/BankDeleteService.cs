@@ -1,7 +1,6 @@
 ﻿using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.BankService;
 using Entities.BanksEntities;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
