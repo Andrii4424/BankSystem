@@ -1,0 +1,62 @@
+﻿using BankData.Repository;
+using BankServices.BankService;
+using BankServices.CardService;
+using BankServices.EmployeeService;
+using BankServices.UserService;
+using BankServicesContracts.RepositoryContracts;
+using BankServicesContracts.ServicesContracts;
+using BankServicesContracts.ServicesContracts.BankService;
+using BankServicesContracts.ServicesContracts.CardServiceContracts;
+using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
+using BankServicesContracts.ServicesContracts.UserServiceContracts;
+using Entities;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+
+namespace BankProject
+{
+    public static class AddApplicationServices
+    {
+        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
+        {
+
+            services.AddControllersWithViews();
+            services.AddDbContext<BankAppContext>(
+                options =>
+                {
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                }
+                );
+
+            //repository
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            //Services
+            //Bank Services
+            services.AddScoped<IBankReadService, BankReadService>();
+            services.AddScoped<IBankAddService, BankAddService>();
+            services.AddScoped<IBankUpdateService, BankUpdateService>();
+            services.AddScoped<IBankDeleteService, BankDeleteService>();
+
+            //Card Services 
+            services.AddScoped<ICardReadService, CardReadService>();
+            services.AddScoped<ICardAddService, CardAddService>();
+            services.AddScoped<ICardUpdateService, CardUpdateService>();
+            services.AddScoped<ICardDeleteService, CardDeleteService>();
+
+            //User Services
+            services.AddScoped<IUserReadService, UserReadService>();
+            services.AddScoped<IUserAddService, UserAddService>();
+            services.AddScoped<IUserUpdateService, UserUpdateService>();
+            services.AddScoped<IUserDeleteService, UserDeleteService>();
+
+            //Employee Services
+            services.AddScoped<IEmployeeReadService, EmployeeReadService>();
+            services.AddScoped<IEmployeeAddService, EmployeeAddService>();
+            services.AddScoped<IEmployeeUpdateService, EmployeeUpdateService>();
+            services.AddScoped<IEmployeeDeleteService, EmployeeDeleteService>();
+
+            return services;
+        }
+    }
+}

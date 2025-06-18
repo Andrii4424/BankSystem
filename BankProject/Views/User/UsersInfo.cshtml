@@ -1,0 +1,58 @@
+﻿@model List<UserEntity>;
+@{
+	ViewBag.Title = $"{ViewBag.BankName} users";
+	ViewBag.Header = $"{ViewBag.BankName} users";
+}
+@section backbutton {
+	<a asp-controller="Bank" asp-action="BankInfo" asp-route-bankId="@ViewBag.BankId" class="back-to-home">Back to @ViewBag.BankName page</a>
+}
+
+<section class="users-table">
+	@if (Model.Count == 0)
+	{
+		<h4>There is no active users</h4>
+	}
+	@foreach (UserEntity user in Model)
+	{
+		<table class="users-info-table">
+			<tr>
+				<td>User name: </td>
+				<td>@user.FullName</td>
+			</tr>
+			<tr>
+				<td>User email: </td>
+				<td>@user.Email</td>
+			</tr>
+			<tr>
+				<td>User age: </td>
+				<td>@user.Age</td>
+			</tr>
+			<tr>
+				<td>User gender: </td>
+				<td>@user.Gender</td>
+			</tr>
+			<tr>
+				<td>User nationality: </td>
+				<td>@user.Nationality</td>
+			</tr>
+			<tr>
+				<td>User financal number: </td>
+				<td>@user.FinancalNumber</td>
+			</tr>
+		</table>
+
+		<div class="update-delete-wrapper">
+			<form asp-controller="User" asp-action="UpdateUser" asp-route-bankId="@user.BankId" asp-route-userId="@user.Id" method="get">
+				<button class="update-object">Update User</button>
+			</form>
+			<form asp-controller="User" asp-action="DeleteUser" asp-route-bankId="@ViewBag.BankId"
+				  asp-route-userId="@user.Id" method="post">
+				<button class="delete-object">Delete User</button>
+			</form>
+		</div>
+
+	}
+</section>
+
+<a asp-controller="User" asp-action="AddUser" asp-route-bankId="@ViewBag.BankId" class="add-user-button">Add user</a>
+

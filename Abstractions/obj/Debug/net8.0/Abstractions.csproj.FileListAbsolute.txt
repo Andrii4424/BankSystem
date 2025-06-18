@@ -1,0 +1,11 @@
+D:\C#\BankProject\Abstractions\bin\Debug\net8.0\Abstractions.deps.json
+D:\C#\BankProject\Abstractions\bin\Debug\net8.0\Abstractions.dll
+D:\C#\BankProject\Abstractions\bin\Debug\net8.0\Abstractions.pdb
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\Abstractions.AssemblyInfoInputs.cache
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\Abstractions.AssemblyInfo.cs
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\Abstractions.csproj.CoreCompileInputs.cache
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\Abstractions.dll
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\refint\Abstractions.dll
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\Abstractions.pdb
+D:\C#\BankProject\Abstractions\obj\Debug\net8.0\ref\Abstractions.dll

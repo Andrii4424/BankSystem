@@ -1,0 +1,55 @@
+﻿@model UserDto
+
+@{
+    ViewBag.ObjectName = "Updating User";
+    Layout = "~/Views/Shared/_LayoutAddObject.cshtml";
+}
+@section backButton {
+    <a asp-controller="User" asp-action="UsersInfo" asp-route-bankId="@Model.BankId" class="back-to-home">Back to users list page</a>
+}
+
+<section class="inputs">
+    <form asp-controller="User" asp-action="UpdateUser" method="post">
+        <input type="hidden" name="BankId" value="@Model.BankId">
+        <input asp-for="FullName" placeholder="Please enter users full name" value="@Model.FullName"></input>
+        <span asp-validation-for="FullName" class="input-error-message"></span>
+        <input asp-for="FinancalNumber" type="number" placeholder="Please enter Financal number" value="@Model.FinancalNumber"></input>
+        <span asp-validation-for="FinancalNumber" class="input-error-message"></span>
+        <input asp-for="Age" type="number" placeholder="Please enter users age" value="@Model.Age"></input>
+        <span asp-validation-for="Age" class="input-error-message"></span>
+        <select asp-for="Gender">
+            @if(Model.Gender =="M"){
+                <option value="M" selected>Male</option>
+                <option value="F">Female</option>
+            }
+            @if (Model.Gender == "F")
+            {
+                <option value="M">Male</option>
+                <option value="F" selected>Female</option>
+            }
+
+        </select>
+        <span asp-validation-for="Gender" class="input-error-message"></span>
+        <input asp-for="Email" type="email" placeholder="Please enter users email" value="@Model.Email"></input>
+        <span asp-validation-for="Email" class="input-error-message"></span>
+        <input asp-for="Nationality" placeholder="Please enter users Nationality" value="@Model.Nationality"></input>
+        <span asp-validation-for="Nationality" class="input-error-message"></span>
+        <input type="hidden" name="IsEmployed" value="false">
+        <input type="hidden" name="JobTitle" value="@Model.JobTitle">
+        <button type="submit">Update User</button>
+    </form>
+</section>
+<section>
+    <h1>@ViewBag.Message</h1>
+    @if (ViewBag.Errors != null)
+    {
+        <div class="errors">
+            @foreach (var item in ViewBag.Errors)
+            {
+                <h4>
+                    @item
+                </h4>
+            }
+        </div>
+    }
+</section>

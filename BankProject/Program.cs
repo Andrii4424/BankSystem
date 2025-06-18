@@ -1,0 +1,47 @@
+using BankServices.BankService;
+using BankServicesContracts.ServicesContracts;
+using System.Globalization;
+using BankProject.Middleware;
+using BankServicesContracts.RepositoryContracts;
+using BankData.Repository;
+using Entities;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using BankProject;
+
+var builder = WebApplication.CreateBuilder(args);
+
+//Logging
+builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration) =>
+{
+    loggerConfiguration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services);
+});
+
+//Adding Services
+builder.Services.AddServices(builder.Configuration);
+
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseErrorLoggingMiddleware();
+    app.UseExceptionHandler("/error");
+}
+
+//app.UseExceptionHandlerMiddleware();
+app.UseRouting();
+app.MapControllers();
+app.UseStaticFiles();
+
+var cultureInfo = new CultureInfo("en-US"); //to to solve the problem of filling numbers in the double format
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+app.Run();

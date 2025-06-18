@@ -1,0 +1,60 @@
+﻿@model BankDto
+
+@{
+    ViewBag.ObjectName = "Updating Bank";
+    Layout = "~/Views/Shared/_LayoutAddObject.cshtml";
+}
+@section backButton {
+    <a asp-controller="Bank" asp-action="BanksList" class="back-to-home">Back to banks list page</a>
+}
+
+<section class="inputs">
+    <form asp-controller="Bank" asp-action="UpdateBank" method="post">
+        <input asp-for="BankName" placeholder="Please enter bank name" value="@Model.BankName"></input>
+        <span asp-validation-for="BankName" class="input-error-message"></span>
+        <input asp-for="Rating" type="number" step="0.1" value="@Model.Rating" placeholder="Please enter bank rating"></input>
+        <span asp-validation-for="Rating" class="input-error-message"></span>
+        <select asp-for="HasLicense">
+            <option value="">Bank has license</option>
+            @if(Model.HasLicense==true){
+                <option value="true" selected>Yes</option>
+                <option value="false">No</option>
+            }
+            @if (Model.HasLicense == false)
+            {
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            }
+        </select>
+        <span asp-validation-for="HasLicense" class="input-error-message"></span>
+        <input asp-for="BankFounder" placeholder="Please enter founder name" value="@Model.BankFounder"></input>
+        <span asp-validation-for="BankFounder" class="input-error-message"></span>
+        <input asp-for="BankDirector" placeholder="Please enter director name" value="@Model.BankDirector"></input>
+        <span asp-validation-for="BankDirector" class="input-error-message"></span>
+        <input asp-for="Capitalization" type="number" placeholder="Please enter bank capitalization" value="@Model.Capitalization"></input>
+        <span asp-validation-for="Capitalization" class="input-error-message"></span>
+        <input asp-for="EmployeesCount" type="number" placeholder="Please enter employee count" value="@Model.EmployeesCount"></input>
+        <span asp-validation-for="EmployeesCount" class="input-error-message"></span>
+        <input asp-for="ClientsCount" type="number" placeholder="Please enter clients count" value="@Model.ClientsCount"></input>
+        <span asp-validation-for="ClientsCount" class="input-error-message"></span>
+        <input asp-for="BlockedClientsCount" type="number" placeholder="Please enter blocked clients count" value="@Model.BlockedClientsCount"></input>
+        <span asp-validation-for="BlockedClientsCount" class="input-error-message"></span>
+
+        <button type="submit">Update bank</button>
+
+    </form>
+</section>
+<section>
+    <h1>@ViewBag.Message</h1>
+    @if (ViewBag.Errors != null)
+    {
+        <div class="errors">
+            @foreach (var item in ViewBag.Errors)
+            {
+                <h4>
+                    @item
+                </h4>
+            }
+        </div>
+    }
+</section>

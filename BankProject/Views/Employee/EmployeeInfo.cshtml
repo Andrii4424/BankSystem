@@ -1,0 +1,60 @@
+﻿@model List<UserEntity>;
+
+@{
+	ViewBag.Title = $"{ViewBag.BankName} employees";
+	ViewBag.Header = $"{ViewBag.BankName} employees";
+}
+@section backbutton {
+	<a asp-controller="Bank" asp-action="BankInfo" asp-route-bankId="@ViewBag.BankId" class="back-to-home">Back to @ViewBag.BankName page</a>
+}
+<section class="users-table">
+	@if (Model.Count == 0)
+	{
+		<h4>There is no active employees</h4>
+	}
+	@foreach (UserEntity employee in Model)
+	{
+		<table class="users-info-table">
+			<tr>
+				<td>Employee name: </td>
+				<td>@employee.FullName</td>
+			</tr>
+			<tr>
+				<td>Employee email: </td>
+				<td>@employee.Email</td>
+			</tr>
+			<tr>
+				<td>Employee age: </td>
+				<td>@employee.Age</td>
+			</tr>
+			<tr>
+				<td>Employee gender: </td>
+				<td>@employee.Gender</td>
+			</tr>
+			<tr>
+				<td>Employee nationality: </td>
+				<td>@employee.Nationality</td>
+			</tr>
+			<tr>
+				<td>Employee financal number: </td>
+				<td>@employee.FinancalNumber</td>
+			</tr>
+			<tr>
+				<td>Employee job title: </td>
+				<td>@employee.JobTitle</td>
+			</tr>
+		</table>
+
+		<div class="update-delete-wrapper">
+			<form asp-controller="Employee" asp-action="UpdateEmployee" asp-route-bankId="@employee.BankId" asp-route-userId="@employee.Id" method="get">
+				<button class="update-object">Update Employee</button>
+			</form>
+			<form asp-controller="Employee" asp-action="DeleteEmployee" asp-route-bankId="@employee.BankId"
+				  asp-route-userId="@employee.Id" method="post">
+				<button class="delete-object">Delete User</button>
+			</form>
+		</div>
+	}
+</section>
+<a asp-controller="Employee" asp-action="AddEmployee" asp-route-bankId="@ViewBag.BankId" class="add-user-button">Add employee</a>
+
