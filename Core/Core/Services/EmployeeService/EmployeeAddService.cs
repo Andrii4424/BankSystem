@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
 using Core.Domain.Entities;
 using Entities.BanksEntities;
@@ -13,12 +14,12 @@ namespace BankServices.EmployeeService
 {
     public class EmployeeAddService : IEmployeeAddService
     {
-        private readonly IGenericRepository<UserEntity> _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogger<EmployeeAddService> _logger;
 
-        public EmployeeAddService(IGenericRepository<UserEntity> genericRepository, ILogger<EmployeeAddService> logger)
+        public EmployeeAddService(IEmployeeRepository employeeRepository, ILogger<EmployeeAddService> logger)
         {
-            _employeeRepository = genericRepository;
+            _employeeRepository = employeeRepository;
             _logger = logger;
         }
 

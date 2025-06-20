@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
 using Core.Domain.Entities;
 using Entities.BanksEntities;
@@ -13,13 +14,13 @@ namespace BankServices.EmployeeService
 {
     public class EmployeeDeleteService : IEmployeeDeleteService
     {
-        private readonly IGenericRepository<UserEntity> _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogger<EmployeeDeleteService> _logger;
 
         //Constructor
-        public EmployeeDeleteService(IGenericRepository<UserEntity> genericRepository, ILogger<EmployeeDeleteService> logger)
+        public EmployeeDeleteService(IEmployeeRepository employeeRepository, ILogger<EmployeeDeleteService> logger)
         {
-            _employeeRepository = genericRepository;
+            _employeeRepository = employeeRepository;
             _logger = logger;
         }
 

@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using DTO.BankDto;
 using Entities.BanksEntities;
@@ -13,18 +14,18 @@ namespace BankServices.CardService
 {
     public class CardAddService : ICardAddService
     {
-        private readonly IGenericRepository<CardEntity> _cardRepository;
-        private readonly IGenericRepository<BankEntity> _bankRepostory;
+        private readonly ICardRepository _cardRepository;
+        private readonly IBankRepository _bankRepository;
 
-        public CardAddService(IGenericRepository<CardEntity> cardRepository, IGenericRepository<BankEntity> bankRepository)
+        public CardAddService(ICardRepository cardRepository, IBankRepository bankRepository)
         {
-            _bankRepostory = bankRepository;
+            _bankRepository = bankRepository;
             _cardRepository = cardRepository;
         }
 
         public async Task AddCard(CardDto cardDto)
         {
-            if (!await _bankRepostory.IsObjectIdExists(cardDto.BankId))
+            if (!await _bankRepository.IsObjectIdExists(cardDto.BankId))
             {
                 throw new ArgumentException("Bank with this id doesnt exist");
             }

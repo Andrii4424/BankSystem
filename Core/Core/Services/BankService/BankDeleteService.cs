@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.BankService;
 using Entities.BanksEntities;
 using System;
@@ -11,11 +12,11 @@ namespace BankServices.BankService
 {
     public class BankDeleteService: IBankDeleteService
     {
-        private readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly IBankRepository _bankRepository;
 
-        public BankDeleteService(IGenericRepository<BankEntity> genericRepository)
+        public BankDeleteService(IBankRepository bankRepository)
         {
-            _bankRepository = genericRepository;
+            _bankRepository = bankRepository;
         }
 
         //Delete

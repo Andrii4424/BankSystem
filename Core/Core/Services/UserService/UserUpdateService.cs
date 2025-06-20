@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using Core.Domain.Entities;
 using DTO.PersonDto;
@@ -14,10 +15,10 @@ namespace BankServices.UserService
 {
     public class UserUpdateService : IUserUpdateService
     {
-        private readonly IGenericRepository<UserEntity> _usersRepository;
+        private readonly IUserRepository _usersRepository;
         private readonly ILogger<UserUpdateService> _logger;
 
-        public UserUpdateService(IGenericRepository<UserEntity> userRepository, ILogger<UserUpdateService> logger)
+        public UserUpdateService(IUserRepository userRepository, ILogger<UserUpdateService> logger)
         {
             _usersRepository = userRepository;
             _logger = logger;

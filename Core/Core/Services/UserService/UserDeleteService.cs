@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using Core.Domain.Entities;
 using Entities.BanksEntities;
@@ -13,9 +14,9 @@ namespace BankServices.UserService
 {
     public class UserDeleteService : IUserDeleteService
     {
-        private readonly IGenericRepository<UserEntity> _usersRepository;
+        private readonly IUserRepository _usersRepository;
 
-        public UserDeleteService(IGenericRepository<UserEntity> userRepository)
+        public UserDeleteService(IUserRepository userRepository)
         {
             _usersRepository = userRepository;
         }

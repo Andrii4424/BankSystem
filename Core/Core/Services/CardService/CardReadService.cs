@@ -1,4 +1,5 @@
-﻿using BankServices.BankService;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServices.BankService;
 using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using DTO.BankDto;
@@ -14,12 +15,12 @@ namespace BankServices.CardService
 {
     public class CardReadService : ICardReadService
     {
-        private readonly IGenericRepository<CardEntity> _cardRepository;
-        private readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly ICardRepository _cardRepository;
+        private readonly IBankRepository _bankRepository;
         private readonly ILogger<CardReadService> _logger;
 
-        public CardReadService(IGenericRepository<CardEntity> cardRepository,
-            IGenericRepository<BankEntity> bankRepository, ILogger<CardReadService> logger)
+        public CardReadService(ICardRepository cardRepository,
+            IBankRepository bankRepository, ILogger<CardReadService> logger)
         {
             _cardRepository = cardRepository;
             _bankRepository = bankRepository;
@@ -51,11 +52,7 @@ namespace BankServices.CardService
 
         public async Task<List<CardEntity>?> GetCardsListByBankId(int bankId)
         {
-            List<CardEntity>? allCardsList = await GetCardsList();
-            List<CardEntity>? bankCards = allCardsList?
-                .Where(u => u.BankId == bankId)
-                .ToList();
-            return bankCards;
+            return await _cardRepository.GetCardsListByBankId(bankId); 
         }
 
 

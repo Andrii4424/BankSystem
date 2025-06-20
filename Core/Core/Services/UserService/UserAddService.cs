@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using Core.Domain.Entities;
 using DTO.PersonDto;
@@ -14,13 +15,13 @@ namespace BankServices.UserService
 {
     public class UserAddService : IUserAddService
     {
-        private readonly IGenericRepository<UserEntity> _usersRepository;
-        public readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly IUserRepository _usersRepository;
+        private readonly IBankRepository _bankRepository;
         private readonly ILogger<UserAddService> _logger;
 
         //Constructor
-        public UserAddService(IGenericRepository<UserEntity> userRepository,
-            IGenericRepository<BankEntity> bankRepsitory, ILogger<UserAddService> logger)
+        public UserAddService(IUserRepository userRepository,
+            IBankRepository bankRepsitory, ILogger<UserAddService> logger)
         {
             _usersRepository = userRepository;
             _bankRepository = bankRepsitory;

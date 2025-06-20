@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.BankService;
 using DTO.BankDto;
 using Entities.BanksEntities;
@@ -13,11 +14,11 @@ namespace BankServices.BankService
 {
     public class BankAddService : IBankAddService
     {
-        private readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly IBankRepository _bankRepository;
 
-        public BankAddService(IGenericRepository<BankEntity> genericRepository)
+        public BankAddService(IBankRepository bankRepository)
         {
-            _bankRepository = genericRepository;
+            _bankRepository = bankRepository;
         }
 
         //Add

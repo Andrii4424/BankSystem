@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using Core.Domain.Entities;
 using DTO.PersonDto;
@@ -14,13 +15,13 @@ namespace BankServices.UserService
 {
     public class UserReadService: IUserReadService
     {
-        private readonly IGenericRepository<UserEntity> _usersRepository;
+        private readonly IUserRepository _usersRepository;
         private readonly ILogger<UserReadService> _logger;
-        private readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly IBankRepository _bankRepository;
 
         //Constructor
-        public UserReadService(IGenericRepository<UserEntity> userRepository, 
-            ILogger<UserReadService> logger, IGenericRepository<BankEntity> bankRepository)
+        public UserReadService(IUserRepository userRepository, 
+            ILogger<UserReadService> logger, IBankRepository bankRepository)
         {
             _usersRepository = userRepository;
             _logger = logger;
@@ -46,11 +47,7 @@ namespace BankServices.UserService
 
         public async Task<List<UserEntity>?> GetUsersListByBankId(int bankId)
         {
-            List<UserEntity>? allUsersList = await GetUsersList();
-            List<UserEntity>? bankUsers = allUsersList?
-                .Where(u => u.BankId == bankId)
-                .ToList();
-            return bankUsers;
+            return await _usersRepository.GetUsersListByBankId(bankId);
         }
         public async Task<UserDto> GetUserDto(int userId)
         {

@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
 using Core.Domain.Entities;
 using DTO.PersonDto;
@@ -14,25 +15,21 @@ namespace BankServices.EmployeeService
 {
     public class EmployeeReadService : IEmployeeReadService
     {
-        private readonly IGenericRepository<UserEntity> _employeeRepository;
-        public readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IBankRepository _bankRepository;
         private readonly ILogger<EmployeeReadService> _logger;
 
-        public EmployeeReadService(IGenericRepository<UserEntity> genericRepository,
-            IGenericRepository<BankEntity> BankRepository, ILogger<EmployeeReadService> logger)
+        public EmployeeReadService(IEmployeeRepository employeeRepository,
+            IBankRepository bankRepository, ILogger<EmployeeReadService> logger)
         {
-            _employeeRepository = genericRepository;
-            _bankRepository = BankRepository;
+            _employeeRepository = employeeRepository;
+            _bankRepository = bankRepository;
             _logger = logger;
         }
 
         public async Task<List<UserEntity>?> GetAllBankEmployeesList(int bankId)
         {
-            var response = await _employeeRepository.GetAllValuesAsync();
-            if (response == null) return null;
-            return response.
-                Where(u => u.IsEmployed == true && u.BankId == bankId)
-                .ToList();
+            return await _employeeRepository.GetAllBankEmployeesList(bankId);
         }
 
         public async Task<UserEntity> GetEmployeeById(int userId, int bankId)

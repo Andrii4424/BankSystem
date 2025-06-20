@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using Entities.BanksEntities;
 using Microsoft.Extensions.Logging;
@@ -12,9 +13,9 @@ namespace BankServices.CardService
 {
     public class CardDeleteService : ICardDeleteService
     {
-        private readonly IGenericRepository<CardEntity> _cardRepository;
+        private readonly ICardRepository _cardRepository;
 
-        public CardDeleteService(IGenericRepository<CardEntity> cardRepository)
+        public CardDeleteService(ICardRepository cardRepository)
         {
             _cardRepository = cardRepository;
         }

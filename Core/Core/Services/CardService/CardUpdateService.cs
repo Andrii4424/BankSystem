@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using DTO.BankDto;
 using Entities.BanksEntities;
@@ -13,10 +14,10 @@ namespace BankServices.CardService
 {
     public class CardUpdateService : ICardUpdateService
     {
-        private readonly IGenericRepository<CardEntity> _cardRepository;
+        private readonly ICardRepository _cardRepository;
         private readonly ILogger<CardUpdateService> _logger;
 
-        public CardUpdateService(IGenericRepository<CardEntity> cardRepository, ILogger<CardUpdateService> logger)
+        public CardUpdateService(ICardRepository cardRepository, ILogger<CardUpdateService> logger)
         {
             _cardRepository = cardRepository;
             _logger = logger;

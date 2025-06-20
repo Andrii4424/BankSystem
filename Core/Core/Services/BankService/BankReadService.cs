@@ -1,4 +1,5 @@
-﻿using BankServicesContracts.RepositoryContracts;
+﻿using ApplicationCore.Domain.RepositoryContracts;
+using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.BankService;
 using DTO.BankDto;
 using Entities.BanksEntities;
@@ -13,12 +14,12 @@ namespace BankServices.BankService
 {
     public class BankReadService : IBankReadService
     {
-        private readonly IGenericRepository<BankEntity> _bankRepository;
+        private readonly IBankRepository _bankRepository;
         private readonly ILogger<BankReadService> _logger;
 
-        public BankReadService(IGenericRepository<BankEntity> genericRepository, ILogger<BankReadService> logger)
+        public BankReadService(IBankRepository bankRepository, ILogger<BankReadService> logger)
         {
-            _bankRepository = genericRepository;
+            _bankRepository = bankRepository;
             _logger = logger;
         }
 

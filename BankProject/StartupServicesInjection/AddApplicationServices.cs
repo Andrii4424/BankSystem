@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Domain.Entities.Identity;
+using ApplicationCore.Domain.RepositoryContracts;
 using BankData.Repository;
 using BankServices.BankService;
 using BankServices.CardService;
@@ -11,6 +12,7 @@ using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using Entities;
+using Infrastructure.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -30,15 +32,18 @@ namespace BankProject
                 }
                 );
 
-            //repository
+            //Repositories
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IBankRepository), typeof(BankRepository));
+            services.AddScoped(typeof(ICardRepository), typeof(CardRepository));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
 
             //Identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<BankAppContext>()
                 .AddDefaultTokenProviders();
 
-   
             //Services
 
             //Bank Services
