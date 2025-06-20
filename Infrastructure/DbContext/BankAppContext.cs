@@ -1,5 +1,7 @@
-﻿using Core.Domain.Entities;
+﻿using ApplicationCore.Domain.Entities.Identity;
+using Core.Domain.Entities;
 using Entities.BanksEntities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class BankAppContext :DbContext
+    public class BankAppContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public DbSet<BankEntity> Bank { get; set; }
         public DbSet<CardEntity> Card {  get; set; }

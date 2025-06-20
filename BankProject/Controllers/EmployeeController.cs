@@ -3,6 +3,7 @@ using BankServicesContracts.ServicesContracts;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
 using DTO.PersonDto;
 using Microsoft.AspNetCore.Mvc;
+using UI.Filters;
 
 namespace BankProject.Controllers
 {
@@ -32,6 +33,7 @@ namespace BankProject.Controllers
             return View(await _employeeReadService.GetAllBankEmployeesList(bankId));
         }
 
+        [TypeFilter(typeof(UserValidation))]
         [HttpGet("/add-employee/bank-id/{bankId:int?}")]
         public IActionResult AddEmployee(int? bankId)
         {
@@ -48,6 +50,7 @@ namespace BankProject.Controllers
             return View();
         }
 
+        [TypeFilter(typeof(UserValidation))]
         [HttpGet("/update-employee/bank-id/{bankId:int}/user-id/{userId:int}")]
         public async Task<IActionResult> UpdateEmployee([FromRoute] int bankId, [FromRoute] int userId)
         {
@@ -62,6 +65,7 @@ namespace BankProject.Controllers
             return View(await _employeeReadService.GetEmployeeDto(userId));
         }
 
+        [TypeFilter(typeof(UserValidation))]
         [HttpPost("/delete-employee/bank-id/{bankId:int}/user-id/{userId:int}")]
         public async Task<IActionResult> DeleteEmployee([FromRoute] int bankId, [FromRoute] int userId)
         {

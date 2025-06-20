@@ -1,7 +1,7 @@
 ﻿@model List<CardEntity>;
 @{
-	ViewBag.Title = $"{ViewBag.BankName} users";
-	ViewBag.Header = $"{ViewBag.BankName} users";
+	ViewBag.Title = $"{ViewBag.BankName} cards";
+	ViewBag.Header = $"{ViewBag.BankName} cards";
 }
 @section backbutton {
 	<a asp-controller="Bank" asp-action="BankInfo" asp-route-bankId="@ViewBag.BankId" class="back-to-home">Back to @ViewBag.BankName page</a>

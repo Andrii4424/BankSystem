@@ -4,6 +4,7 @@ using BankServicesContracts.ServicesContracts;
 using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using DTO.BankDto;
 using Microsoft.AspNetCore.Mvc;
+using UI.Filters;
 
 namespace BankProject.Controllers
 {
@@ -33,6 +34,7 @@ namespace BankProject.Controllers
             return View(await _cardReadService.GetCardsListByBankId(bankId));
         }
 
+        [TypeFilter(typeof(UserValidation))]
         [HttpGet("/add-bank-card/bank-id/{bankId:int?}")]
         public IActionResult AddCard(int bankId)
         {
@@ -49,7 +51,7 @@ namespace BankProject.Controllers
             return View(card);
         }
 
-
+        [TypeFilter(typeof(UserValidation))]
         [HttpGet("/update-card/bank-id/{bankId:int}/card-id/{cardId:int}")]
         public async Task<IActionResult> UpdateCard([FromRoute] int bankId, [FromRoute] int cardId)
         {
@@ -65,6 +67,7 @@ namespace BankProject.Controllers
             return View(cardDto);
         }
 
+        [TypeFilter(typeof(UserValidation))]
         [HttpPost("/delete-card/bank-id/{bankId:int}/card-id/{cardId:int}")]
         public async Task<IActionResult> DeleteCard([FromRoute] int bankId, int cardId)
         {

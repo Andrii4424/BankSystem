@@ -35,9 +35,15 @@ else
 }
 
 //app.UseExceptionHandlerMiddleware();
-app.UseRouting();
-app.MapControllers();
 app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
 
 var cultureInfo = new CultureInfo("en-US"); //to to solve the problem of filling numbers in the double format
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;

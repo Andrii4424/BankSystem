@@ -4,6 +4,7 @@ using BankServicesContracts.ServicesContracts.BankService;
 using DTO.BankDto;
 using Entities.BanksEntities;
 using Microsoft.AspNetCore.Mvc;
+using UI.Filters;
 
 namespace BankProject.Controllers
 {
@@ -38,7 +39,7 @@ namespace BankProject.Controllers
             return View(bank);
         }
 
-
+        [TypeFilter(typeof(UserValidation))]
         [HttpGet("/add-bank")]
         public IActionResult AddBank()
         {
@@ -55,7 +56,7 @@ namespace BankProject.Controllers
             return View("AddBank");
         }
 
-
+        [TypeFilter(typeof(UserValidation))]
         [HttpGet("/update-bank/bank-id/{bankId:int?}")]
         public async Task<IActionResult> UpdateBank(int bankId)
         {
@@ -70,6 +71,7 @@ namespace BankProject.Controllers
             return View(bank);
         }
 
+        [TypeFilter(typeof(UserValidation))]
         [HttpPost("/delete-bank/{bankId:int}")]
         public async Task<IActionResult> DeleteBank(int bankId)
         {
