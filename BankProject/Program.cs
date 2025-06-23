@@ -23,6 +23,8 @@ builder.Services.AddServices(builder.Configuration);
 
 
 var app = builder.Build();
+app.UseHsts();
+app.UseHttpsRedirection();
 //Swagger
 app.UseSwagger();
 app.UseSwaggerUI();
