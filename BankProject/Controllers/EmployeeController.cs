@@ -1,13 +1,15 @@
-﻿using BankProject.Filters;
-using BankServicesContracts.ServicesContracts;
+﻿using BankProject;
+using BankProject.Filters;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
-using DTO.PersonDto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UI.Filters;
 
-namespace BankProject.Controllers
+namespace UI.Controllers
 {
-    public class EmployeeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeReadService _employeeReadService;
         private readonly IEmployeeAddService _employeeAddService;
@@ -25,13 +27,48 @@ namespace BankProject.Controllers
             _logger = logger;
         }
 
-        [HttpGet("employee-info/bank-id/{bankId:int}")]
+        [HttpGet("{bankId:int}")]
         public async Task<IActionResult> EmployeeInfo(int bankId)
         {
-            ViewBag.BankName = await _employeeReadService.GetEmployeesBankName(bankId);
-            ViewBag.BankId = bankId;
-            return View(await _employeeReadService.GetAllBankEmployeesList(bankId));
+            return Ok(await _employeeReadService.GetAllBankEmployeesList(bankId));
         }
+
+        [TypeFilter(typeof(ModelBindingFilter), Arguments = new object[] { nameof(AddEmployee) })]
+        [HttpPost("{bankId:int?}")]
+        public async Task<IActionResult> AddEmployee([FromRoute] int bankId, [FromForm] int userId, [FromForm] string JobTitle)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<string> errors = ErrorHandler.PrintErrorList(ModelState, HttpContext);
+                return BadRequest(errors);
+            }
+            await _employeeAddService.AddEmployee(bankId, userId, JobTitle);
+            return Ok(await _employeeReadService.GetEmployeeDto(userId));
+        }
+
+        [HttpPut("{bankId:int}/{userId:int}")]
+        public async Task<IActionResult> UpdateEmployee([FromRoute] int bankId, [FromRoute] int userId, [FromForm] string JobTitle)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<string> errors = ErrorHandler.PrintErrorList(ModelState, HttpContext);
+                return BadRequest(errors);
+            }
+            await _employeeUpdateService.UpdateEmployee(userId, JobTitle);
+            return Ok(await _employeeReadService.GetEmployeeDto(userId));
+        }
+
+        [HttpDelete("{bankId:int}/{userId:int}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] int bankId, [FromRoute] int userId)
+        {
+            await _employeeDeleteService.FireEmployee(userId);
+            _logger.LogInformation("POST /update-employee -> Succes deleting employee for bankId: {BankId}, " +
+                "userId: {UserId}", bankId, userId);
+            return Ok(); //TO DO: Redirect
+        }
+
+        /*
+
 
         [TypeFilter(typeof(UserValidation))]
         [HttpGet("/add-employee/bank-id/{bankId:int?}")]
@@ -41,38 +78,12 @@ namespace BankProject.Controllers
             return View();
         }
 
-        [TypeFilter(typeof(ModelBindingFilter), Arguments = new object[] { nameof(AddEmployee) })]
-        [HttpPost("/add-employee/bank-id/{bankId:int?}")]
-        public async Task<IActionResult> AddEmployee([FromRoute] int bankId, [FromForm] int EmployeeId, [FromForm] string JobTitle)
-        {
-            ViewBag.BankId = bankId;
-            await _employeeAddService.AddEmployee(bankId, EmployeeId, JobTitle);
-            return View();
-        }
-
         [TypeFilter(typeof(UserValidation))]
         [HttpGet("/update-employee/bank-id/{bankId:int}/user-id/{userId:int}")]
         public async Task<IActionResult> UpdateEmployee([FromRoute] int bankId, [FromRoute] int userId)
         {
             return View(await _employeeReadService.GetEmployeeDto(userId));
         }
-
-        [TypeFilter(typeof(ModelBindingFilter), Arguments = new object[] { nameof(UpdateEmployee) })]
-        [HttpPost("/update-employee/bank-id/{bankId:int}/user-id/{userId:int}")]
-        public async Task<IActionResult> UpdateEmployee([FromRoute] int bankId, [FromRoute] int userId, [FromForm] string JobTitle)
-        {
-            if(ModelState.IsValid) await _employeeUpdateService.UpdateEmployee(userId, JobTitle); 
-            return View(await _employeeReadService.GetEmployeeDto(userId));
-        }
-
-        [TypeFilter(typeof(UserValidation))]
-        [HttpPost("/delete-employee/bank-id/{bankId:int}/user-id/{userId:int}")]
-        public async Task<IActionResult> DeleteEmployee([FromRoute] int bankId, [FromRoute] int userId)
-        {
-            await _employeeDeleteService.FireEmployee(userId);
-            _logger.LogInformation("POST /update-employee -> Succes deleting employee for bankId: {BankId}, " +
-                "userId: {UserId}", bankId, userId);
-            return RedirectToAction("EmployeeInfo", "Employee", new { bankId = bankId });
-        }
+        */
     }
 }

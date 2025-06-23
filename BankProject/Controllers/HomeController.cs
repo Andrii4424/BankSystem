@@ -1,10 +1,12 @@
-﻿using BankServicesContracts.ServicesContracts;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
-namespace BankProject.Controllers
+
+namespace UI.Controllers
 {
-    public class HomeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class HomeController : ControllerBase
     {
         ILogger<HomeController> _logger;
         public HomeController(ILogger<HomeController> logger)
@@ -16,17 +18,18 @@ namespace BankProject.Controllers
         public IActionResult Index()
         {
             _logger.LogDebug("GET / -> rendering welcome page");
-            return View();
+            return Ok();
         }
 
         [HttpGet("/error")]
-        public IActionResult Error() { 
-            IExceptionHandlerPathFeature? feature =HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            if (feature != null && feature.Error != null) { 
-                ViewBag.ErrorMessage = feature.Error.Message;
+        public IActionResult Error()
+        {
+            IExceptionHandlerPathFeature? feature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            if (feature != null && feature.Error != null)
+            {
                 HttpContext.Response.StatusCode = 400;
             }
-            return View();
+            return Problem();
         }
     }
 }

@@ -1,14 +1,15 @@
-﻿using BankProject.Filters;
-using BankServices.BankService;
-using BankServicesContracts.ServicesContracts;
+﻿using BankProject;
+using BankProject.Filters;
 using BankServicesContracts.ServicesContracts.CardServiceContracts;
 using DTO.BankDto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using UI.Filters;
 
-namespace BankProject.Controllers
+namespace UI.Controllers
 {
-    public class CardController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CardController : ControllerBase
     {
         private readonly ICardReadService _cardReadService;
         private readonly ICardAddService _cardAddService;
@@ -26,13 +27,47 @@ namespace BankProject.Controllers
             _logger = logger;
         }
 
-        [HttpGet("/cards-info/bank-id/{bankId:int}")]
+        [HttpGet("{bankId:int}")]
         public async Task<IActionResult> CardsInfo(int bankId)
         {
-            ViewBag.BankId = bankId;
-            ViewBag.BankName = await _cardReadService.GetCardBankName(bankId);
-            return View(await _cardReadService.GetCardsListByBankId(bankId));
+            return Ok(await _cardReadService.GetCardsListByBankId(bankId));
         }
+
+        [HttpPost("{bankId:int}")]
+        public async Task<IActionResult> AddCard([FromRoute] int bankId, [FromForm] CardDto cardDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<string> errors = ErrorHandler.PrintErrorList(ModelState, HttpContext);
+                return BadRequest(errors);
+            }
+            await _cardAddService.AddCard(cardDto);
+            return Ok(cardDto);
+        }
+
+        [HttpPut("{bankId:int}/{cardId:int}")]
+        public async Task<IActionResult> UpdateCard([FromForm] CardDto cardDto, [FromRoute] int bankId,
+    [FromRoute] int cardId)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<string> errors = ErrorHandler.PrintErrorList(ModelState, HttpContext);
+                return BadRequest(errors);
+            }
+            await _cardUpdateService.UpdateCard(cardId, cardDto);
+            return Ok(cardDto);
+        }
+
+        [HttpDelete("{bankId:int}/{cardId:int}")]
+        public async Task<IActionResult> DeleteCard([FromRoute] int bankId, int cardId)
+        {
+            await _cardDeleteService.DeleteCard(cardId);
+            _logger.LogInformation("POST /delete-card -> Success deleting card for bankId: {BankId}, cardId: {CardId}", bankId, cardId);
+            return Ok(); //TO DO : Redirect 
+        }
+
+        /*
+
 
         [TypeFilter(typeof(UserValidation))]
         [HttpGet("/add-bank-card/bank-id/{bankId:int?}")]
@@ -42,14 +77,7 @@ namespace BankProject.Controllers
             return View();
         }
 
-        [TypeFilter(typeof(ModelBindingFilter), Arguments = new object[] { nameof(AddCard) })]
-        [HttpPost("/add-bank-card/bank-id/{bankId:int}")]
-        public async Task<IActionResult> AddCard([FromRoute] int bankId, [FromForm] CardDto card)
-        {
-            ViewBag.BankId = bankId;
-            if(ModelState.IsValid) await _cardAddService.AddCard(card);
-            return View(card);
-        }
+
 
         [TypeFilter(typeof(UserValidation))]
         [HttpGet("/update-card/bank-id/{bankId:int}/card-id/{cardId:int}")]
@@ -58,22 +86,10 @@ namespace BankProject.Controllers
             return View(await _cardReadService.GetCardDto(cardId));
         }
 
-        [TypeFilter(typeof(ModelBindingFilter), Arguments = new object[] { nameof(UpdateCard) })]
-        [HttpPost("/update-card/bank-id/{bankId:int}/card-id/{cardId:int}")]
-        public async Task<IActionResult> UpdateCard([FromForm] CardDto cardDto, [FromRoute] int bankId, 
-            [FromRoute] int cardId)
-        {
-            if(ModelState.IsValid) await _cardUpdateService.UpdateCard(cardId, cardDto);
-            return View(cardDto);
-        }
+
 
         [TypeFilter(typeof(UserValidation))]
-        [HttpPost("/delete-card/bank-id/{bankId:int}/card-id/{cardId:int}")]
-        public async Task<IActionResult> DeleteCard([FromRoute] int bankId, int cardId)
-        {
-            await _cardDeleteService.DeleteCard(cardId);
-            _logger.LogInformation("POST /delete-card -> Success deleting card for bankId: {BankId}, cardId: {CardId}", bankId, cardId);
-            return RedirectToAction("CardsInfo", "Card", new { bankId = bankId });
-        }
+
+        */
     }
 }

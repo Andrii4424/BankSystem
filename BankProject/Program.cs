@@ -21,7 +21,6 @@ builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, 
 //Adding Services
 builder.Services.AddServices(builder.Configuration);
 
-
 var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
@@ -44,6 +43,9 @@ else
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//CORS
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

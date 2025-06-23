@@ -27,6 +27,14 @@ namespace BankProject
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            //CORS
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>{
+                    builder.WithOrigins("http://localhost:4200");
+                });
+            });
+
             //Database 
             services.AddControllersWithViews();
             services.AddDbContext<BankAppContext>(
