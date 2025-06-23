@@ -23,7 +23,11 @@ namespace BankProject
     {
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
+            //Swagger 
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
+            //Database 
             services.AddControllersWithViews();
             services.AddDbContext<BankAppContext>(
                 options =>

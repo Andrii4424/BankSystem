@@ -59,7 +59,6 @@ namespace UI.Controllers
             }
         }
 
-
         [HttpGet("[controller]/[action]/{ReturnUrl?}")]
         public IActionResult Login(string? ReturnUrl)
         {
@@ -87,7 +86,7 @@ namespace UI.Controllers
             }
         }
 
-        [Route("[controller]/[action]")]
+        [HttpGet("[controller]/[action]")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

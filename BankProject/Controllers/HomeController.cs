@@ -12,14 +12,14 @@ namespace BankProject.Controllers
             _logger = logger;
         }
 
-        [Route("/")]
+        [HttpGet("/")]
         public IActionResult Index()
         {
             _logger.LogDebug("GET / -> rendering welcome page");
             return View();
         }
 
-        [Route("/error")]
+        [HttpGet("/error")]
         public IActionResult Error() { 
             IExceptionHandlerPathFeature? feature =HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             if (feature != null && feature.Error != null) { 

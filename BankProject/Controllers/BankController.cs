@@ -26,7 +26,7 @@ namespace BankProject.Controllers
             _logger = logger;
         }
 
-        [Route("/banks-info")]
+        [HttpGet("/banks-info")]
         public async Task<IActionResult> BanksList()
         {
             return View(await _bankReadService.GetAllBanksList());

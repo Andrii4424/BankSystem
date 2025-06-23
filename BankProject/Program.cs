@@ -23,7 +23,11 @@ builder.Services.AddServices(builder.Configuration);
 
 
 var app = builder.Build();
+//Swagger
+app.UseSwagger();
+app.UseSwaggerUI();
 
+//Enviroment 
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
