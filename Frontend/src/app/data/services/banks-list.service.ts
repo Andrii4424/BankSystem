@@ -9,7 +9,7 @@ export class BanksListService {
   private http = inject(HttpClient);
   
   getBanks(){
-    return this.http.get('https://localhost:7197/api/BankApi');
+    return this.http.get('https://localhost:7197/api/Bank');
   }
 
 }

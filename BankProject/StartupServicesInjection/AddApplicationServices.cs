@@ -30,8 +30,9 @@ namespace BankProject
             //CORS
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>{
-                    builder.WithOrigins("http://localhost:4200");
+                options.AddDefaultPolicy(policyBuilder =>{
+                    policyBuilder.WithOrigins(configuration.GetSection("AllowedOrigins").Get<string[]>());
+                    policyBuilder.WithMethods("GET", "POST", "PUT", "DELETE");                      
                 });
             });
 
