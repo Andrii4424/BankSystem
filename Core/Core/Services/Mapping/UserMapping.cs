@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankServices.UserService
+namespace ApplicationCore.Core.Services.Mapping
 {
     public static class UserMapping
     {

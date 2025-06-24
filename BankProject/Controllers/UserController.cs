@@ -1,10 +1,8 @@
 ﻿using BankProject;
-using BankProject.Filters;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using DTO.PersonDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using UI.Filters;
 
 namespace UI.Controllers
 {

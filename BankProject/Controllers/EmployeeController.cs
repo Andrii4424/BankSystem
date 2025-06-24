@@ -1,9 +1,7 @@
 ﻿using BankProject;
-using BankProject.Filters;
 using BankServicesContracts.ServicesContracts.EmployeeServiceContracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using UI.Filters;
 
 namespace UI.Controllers
 {
@@ -33,7 +31,6 @@ namespace UI.Controllers
             return Ok(await _employeeReadService.GetAllBankEmployeesList(bankId));
         }
 
-        [TypeFilter(typeof(ModelBindingFilter), Arguments = new object[] { nameof(AddEmployee) })]
         [HttpPost("{bankId:int?}")]
         public async Task<IActionResult> AddEmployee([FromRoute] int bankId, [FromForm] int userId, [FromForm] string JobTitle)
         {

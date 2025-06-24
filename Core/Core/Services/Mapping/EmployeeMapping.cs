@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankServices.EmployeeService
+namespace ApplicationCore.Core.Services.Mapping
 {
     public static class EmployeeMapping
     {

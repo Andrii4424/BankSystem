@@ -1,12 +1,10 @@
 ﻿using BankProject;
-using BankProject.Filters;
 using BankServicesContracts.ServicesContracts.BankService;
 using DTO.BankDto;
 using Entities.BanksEntities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using UI.Filters;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UI.Controllers

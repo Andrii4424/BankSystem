@@ -1,7 +1,6 @@
 ﻿using ApplicationCore.Core.DTO.AppUserDto;
 using ApplicationCore.Domain.Entities.Identity;
 using BankProject;
-using BankProject.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

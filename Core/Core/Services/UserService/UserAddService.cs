@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Domain.RepositoryContracts;
+﻿using ApplicationCore.Core.Services.Mapping;
+using ApplicationCore.Domain.RepositoryContracts;
 using BankServicesContracts.RepositoryContracts;
 using BankServicesContracts.ServicesContracts.UserServiceContracts;
 using Core.Domain.Entities;
