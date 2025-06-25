@@ -9,9 +9,9 @@ namespace DTO.PersonDto
 {
     public class UserDto : IValidatableObject
     {
-        [Range(1, int.MaxValue, ErrorMessage = "{0} id cant be lesser than 0 or empty")]
+        [Required(ErrorMessage = "{0} has to be provided")]
         [Display(Name = "Bank id")]
-        public int BankId { get; set; }
+        public Guid BankId { get; init; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [Phone(ErrorMessage = "Please enter a valid {0}")]

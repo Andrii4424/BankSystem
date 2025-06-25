@@ -24,7 +24,7 @@ namespace BankServices.UserService
             _logger = logger;
         }
 
-        public async Task UpdateUser(int userId, UserDto userDto)
+        public async Task UpdateUser(Guid userId, UserDto userDto)
         {
             UserEntity? user = await _usersRepository.GetValueByIdAsync(userId);
             if (user == null)

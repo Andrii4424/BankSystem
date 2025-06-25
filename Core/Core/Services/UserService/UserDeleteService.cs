@@ -21,7 +21,7 @@ namespace BankServices.UserService
             _usersRepository = userRepository;
         }
 
-        public async Task DeleteUser(int userId)
+        public async Task DeleteUser(Guid userId)
         {
             UserEntity? user = await _usersRepository.GetValueByIdAsync(userId);
             if (user != null) { _usersRepository.DeleteElement(user); }

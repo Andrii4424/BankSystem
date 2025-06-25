@@ -13,27 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FC37ABD6-8F93-4F6B-970F-78F5FF815324}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Frontend", "Frontend\", "{BEC1AF4D-7070-47DE-541E-D6A8B557E3AB}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_56191"
-		Debug.AspNetCompiler.PhysicalPath = "Frontend\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56191\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_56191"
-		Release.AspNetCompiler.PhysicalPath = "Frontend\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56191\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "56191"
-		SlnRelativePath = "Frontend\"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{3B59734B-3141-4A83-A656-675AD6C3C8EC}"
 EndProject
 Global
@@ -54,10 +33,6 @@ Global
 		{922AD167-B43E-47D5-BF42-387D7DBDF67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{922AD167-B43E-47D5-BF42-387D7DBDF67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{922AD167-B43E-47D5-BF42-387D7DBDF67F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BEC1AF4D-7070-47DE-541E-D6A8B557E3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEC1AF4D-7070-47DE-541E-D6A8B557E3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEC1AF4D-7070-47DE-541E-D6A8B557E3AB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEC1AF4D-7070-47DE-541E-D6A8B557E3AB}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{3B59734B-3141-4A83-A656-675AD6C3C8EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B59734B-3141-4A83-A656-675AD6C3C8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B59734B-3141-4A83-A656-675AD6C3C8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +45,7 @@ Global
 		{8A0E4A05-BAA3-4170-8BFB-1D645B78988D} = {85431ADC-97CD-4304-8D80-841EA177B3CC}
 		{55D63011-C640-4520-9398-1FEBBB8F4989} = {85431ADC-97CD-4304-8D80-841EA177B3CC}
 		{922AD167-B43E-47D5-BF42-387D7DBDF67F} = {85431ADC-97CD-4304-8D80-841EA177B3CC}
+		{3B59734B-3141-4A83-A656-675AD6C3C8EC} = {85431ADC-97CD-4304-8D80-841EA177B3CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C12F82E-F9BC-42B5-9447-2134AD93697A}

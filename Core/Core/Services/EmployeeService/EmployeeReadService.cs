@@ -28,12 +28,12 @@ namespace BankServices.EmployeeService
             _logger = logger;
         }
 
-        public async Task<List<UserEntity>?> GetAllBankEmployeesList(int bankId)
+        public async Task<List<UserEntity>?> GetAllBankEmployeesList(Guid bankId)
         {
             return await _employeeRepository.GetAllBankEmployeesList(bankId);
         }
 
-        public async Task<UserEntity> GetEmployeeById(int userId, int bankId)
+        public async Task<UserEntity> GetEmployeeById(Guid userId, Guid bankId)
         {
             UserEntity? employee = await _employeeRepository.GetValueByIdAsync(userId);
             if (employee == null || employee.IsEmployed == false || employee.BankId != bankId)
@@ -45,12 +45,12 @@ namespace BankServices.EmployeeService
             return employee;
         }
 
-        public async Task<string> GetEmployeesBankName(int bankId)
+        public async Task<string> GetEmployeesBankName(Guid bankId)
         {
             return (await _bankRepository.GetValueByIdAsync(bankId)).BankName;
         }
 
-        public async Task<UserDto> GetEmployeeDto(int userId)
+        public async Task<UserDto> GetEmployeeDto(Guid userId)
         {
             UserEntity? user = await _employeeRepository.GetValueByIdAsync(userId);
             if (user == null) throw new ArgumentException("This employee doesnt exist in this bank!"); 

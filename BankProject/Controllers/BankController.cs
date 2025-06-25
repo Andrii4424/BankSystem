@@ -39,8 +39,8 @@ namespace UI.Controllers
             return Ok(await _bankReadService.GetAllBanksList());
         }
 
-        [HttpGet("{bankId:int?}")]
-        public async Task<IActionResult> BankInfo(int? bankId)
+        [HttpGet("{bankId:Guid?}")]
+        public async Task<IActionResult> BankInfo(Guid? bankId)
         {
             /// <summary>
             /// Showing bank info, bank serches by id
@@ -67,8 +67,8 @@ namespace UI.Controllers
             return Ok(await _bankReadService.GetAllBanksList());
         }
 
-        [HttpPut("{bankId:int?}")]
-        public async Task<IActionResult> UpdateBank([FromForm] BankDto bank, int bankId)
+        [HttpPut("{bankId:Guid?}")]
+        public async Task<IActionResult> UpdateBank([FromForm] BankDto bank, Guid bankId)
         {
             /// <summary>
             /// Updating bank
@@ -84,8 +84,8 @@ namespace UI.Controllers
             return Ok(await _bankReadService.GetAllBanksList());
         }
 
-        [HttpDelete("{bankId:int}")]
-        public async Task<IActionResult> DeleteBank(int bankId)
+        [HttpDelete("{bankId:Guid}")]
+        public async Task<IActionResult> DeleteBank(Guid bankId)
         {
             /// <summary>
             /// Deleting object

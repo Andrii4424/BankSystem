@@ -24,7 +24,7 @@ namespace BankServices.EmployeeService
             _logger = logger;
         }
 
-        public async Task FireEmployee(int userId)
+        public async Task FireEmployee(Guid userId)
         {
             UserEntity? employee = await _employeeRepository.GetValueByIdAsync(userId);
             if (employee == null)

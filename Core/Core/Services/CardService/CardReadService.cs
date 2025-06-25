@@ -34,7 +34,7 @@ namespace BankServices.CardService
             return await _cardRepository.GetAllValuesAsync() as List<CardEntity>;
         }
 
-        public async Task<CardEntity> GetCardById(int cardId, int bankId)
+        public async Task<CardEntity> GetCardById(Guid cardId, Guid bankId)
         {
             CardEntity? card = await _cardRepository.GetValueByIdAsync(cardId);
             if (card == null || card.BankId != bankId)
@@ -46,18 +46,18 @@ namespace BankServices.CardService
             return card;
         }
 
-        public async Task<string> GetCardBankName(int bankId)
+        public async Task<string> GetCardBankName(Guid bankId)
         {
             return (await _bankRepository.GetValueByIdAsync(bankId)).BankName;
         }
 
-        public async Task<List<CardEntity>?> GetCardsListByBankId(int bankId)
+        public async Task<List<CardEntity>?> GetCardsListByBankId(Guid bankId)
         {
             return await _cardRepository.GetCardsListByBankId(bankId); 
         }
 
 
-        public async Task<CardDto> GetCardDto(int cardId)
+        public async Task<CardDto> GetCardDto(Guid cardId)
         {
             CardEntity? cardEntity = await _cardRepository.GetValueByIdAsync(cardId);
             if (cardEntity == null) throw new ArgumentException("This Card doesnt exist!");

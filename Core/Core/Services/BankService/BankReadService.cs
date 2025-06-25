@@ -30,7 +30,7 @@ namespace BankServices.BankService
         }
 
 
-        public async Task<BankEntity> GetBankModel(int bankId)
+        public async Task<BankEntity> GetBankModel(Guid bankId)
         {
             using (SerilogTimings.Operation.Time("Time for GetBankModel for bankId: {BankId}", bankId))
             {
@@ -44,7 +44,7 @@ namespace BankServices.BankService
             }
         }
 
-        public async Task<BankDto> GetBankDto(int bankId)
+        public async Task<BankDto> GetBankDto(Guid bankId)
         {
             BankEntity? bankEntity = await _bankRepository.GetValueByIdAsync(bankId);
             if (bankEntity == null) throw new ArgumentException("This bank doesnt exist!");

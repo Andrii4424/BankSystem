@@ -9,6 +9,6 @@ namespace BankServicesContracts.ServicesContracts.CardServiceContracts
 {
     public interface ICardDeleteService
     {
-        public Task DeleteCard(int cardId);
+        public Task DeleteCard(Guid cardId);
     }
 }

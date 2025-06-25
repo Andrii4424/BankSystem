@@ -26,14 +26,14 @@ namespace UI.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{bankId:int}")]
-        public async Task<IActionResult> UsersInfo(int bankId)
+        [HttpGet("{bankId:Guid}")]
+        public async Task<IActionResult> UsersInfo(Guid bankId)
         {
             return Ok(await _userReadService.GetUsersListByBankId(bankId));
         }
 
-        [HttpPost("{bankId:int}")]
-        public async Task<IActionResult> AddUser([FromRoute] int bankId, [FromForm] UserDto userDto)
+        [HttpPost("{bankId:Guid}")]
+        public async Task<IActionResult> AddUser([FromRoute] Guid bankId, [FromForm] UserDto userDto)
         {
             if (!ModelState.IsValid)
             {
@@ -44,9 +44,9 @@ namespace UI.Controllers
             return Ok(userDto);
         }
 
-        [HttpPut("{bankId:int}/{userId:int}")]
-        public async Task<IActionResult> UpdateUser([FromForm] UserDto userDto, [FromRoute] int bankId,
-    [FromRoute] int userId)
+        [HttpPut("{bankId:Guid}/{userId:Guid}")]
+        public async Task<IActionResult> UpdateUser([FromForm] UserDto userDto, [FromRoute] Guid bankId,
+    [FromRoute] Guid userId)
         {
             if (!ModelState.IsValid)
             {
@@ -58,8 +58,8 @@ namespace UI.Controllers
             return Ok(userDto);
         }
 
-        [HttpDelete("{bankId:int}/{userId:int}")]
-        public async Task<IActionResult> DeleteUser(int bankId, [FromRoute] int userId)
+        [HttpDelete("{bankId:Guid}/{userId:Guid}")]
+        public async Task<IActionResult> DeleteUser(Guid bankId, [FromRoute] Guid userId)
         {
             await _userDeleteService.DeleteUser(userId);
             _logger.LogInformation("POST /delete-user -> Success deleting user for bankId: {BankId}", bankId);

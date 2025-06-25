@@ -21,7 +21,7 @@ namespace BankServices.BankService
             _bankRepository = bankRepository;
         }
 
-        public async Task UpdateBank(int bankId, BankDto bankDto)
+        public async Task UpdateBank(Guid bankId, BankDto bankDto)
         {
             BankEntity? bank = await _bankRepository.GetValueByIdAsync(bankId);
             if (bank == null) throw new ArgumentException("This bank doesnt exist!"); 

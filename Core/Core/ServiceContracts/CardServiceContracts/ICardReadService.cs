@@ -11,9 +11,9 @@ namespace BankServicesContracts.ServicesContracts.CardServiceContracts
     public interface ICardReadService
     {
         public Task<List<CardEntity>?> GetCardsList();
-        public Task<CardEntity> GetCardById(int cardId, int bankId);
-        public Task<string> GetCardBankName(int bankId);
-        public Task<List<CardEntity>?> GetCardsListByBankId(int bankId);
-        public Task<CardDto> GetCardDto(int cardId);
+        public Task<CardEntity> GetCardById(Guid cardId, Guid bankId);
+        public Task<string> GetCardBankName(Guid bankId);
+        public Task<List<CardEntity>?> GetCardsListByBankId(Guid bankId);
+        public Task<CardDto> GetCardDto(Guid cardId);
     }
 }

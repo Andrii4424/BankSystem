@@ -8,6 +8,6 @@ namespace BankServicesContracts.ServicesContracts.EmployeeServiceContracts
 {
     public interface IEmployeeUpdateService
     {
-        public Task UpdateEmployee(int userId, string jobTitle);
+        public Task UpdateEmployee(Guid userId, string jobTitle);
     }
 }

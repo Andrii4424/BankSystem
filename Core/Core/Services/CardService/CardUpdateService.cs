@@ -23,7 +23,7 @@ namespace BankServices.CardService
             _logger = logger;
         }
 
-        public async Task UpdateCard(int cardId, CardDto cardDto)
+        public async Task UpdateCard(Guid cardId, CardDto cardDto)
         {
             CardEntity? card = await _cardRepository.GetValueByIdAsync(cardId);
             if (card == null)

@@ -10,6 +10,6 @@ namespace ApplicationCore.Domain.RepositoryContracts
 {
     public interface ICardRepository : IGenericRepository<CardEntity>
     {
-        public Task<List<CardEntity>?> GetCardsListByBankId(int bankId);
+        public Task<List<CardEntity>?> GetCardsListByBankId(Guid bankId);
     }
 }

@@ -10,6 +10,6 @@ namespace ApplicationCore.Domain.RepositoryContracts
 {
     public interface IEmployeeRepository : IGenericRepository<UserEntity>
     {
-        public Task<List<UserEntity>?> GetAllBankEmployeesList(int bankId);
+        public Task<List<UserEntity>?> GetAllBankEmployeesList(Guid bankId);
     }
 }

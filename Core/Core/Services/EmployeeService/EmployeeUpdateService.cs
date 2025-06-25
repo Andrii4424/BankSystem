@@ -23,7 +23,7 @@ namespace BankServices.EmployeeService
             _logger = logger;
         }
 
-        public async Task UpdateEmployee(int userId, string jobTitle)
+        public async Task UpdateEmployee(Guid userId, string jobTitle)
         {
             UserEntity? employee = await _employeeRepository.GetValueByIdAsync(userId);
             if (employee == null)

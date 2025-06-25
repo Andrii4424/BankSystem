@@ -20,7 +20,7 @@ namespace Infrastructure.Repository
             _dbSet = context.Set<UserEntity>();
         }
 
-        public async Task<List<UserEntity>?> GetAllBankEmployeesList(int bankId)
+        public async Task<List<UserEntity>?> GetAllBankEmployeesList(Guid bankId)
         {
             return await _dbSet.Where(user => user.BankId == bankId && user.IsEmployed == true).ToListAsync();
         }

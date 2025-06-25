@@ -9,6 +9,6 @@ namespace BankServicesContracts.ServicesContracts.BankService
 {
     public interface IBankUpdateService
     {
-        public Task UpdateBank(int bankId, BankDto bankDto);
+        public Task UpdateBank(Guid bankId, BankDto bankDto);
     }
 }

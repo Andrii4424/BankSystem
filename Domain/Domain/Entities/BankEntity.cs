@@ -12,7 +12,7 @@ namespace Entities.BanksEntities
     public class BankEntity :IHasId
     {
         [Key]
-        public int Id { get; init; }
+        public Guid Id { get; init; } = Guid.NewGuid();
 
         [StringLength(40)]
         public string BankName { get; set; }

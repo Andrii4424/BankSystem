@@ -22,7 +22,7 @@ namespace Infrastructure.Repository
             _dbSet = context.Set<UserEntity>();
         }
 
-        public async Task<List<UserEntity>?> GetUsersListByBankId(int bankId)
+        public async Task<List<UserEntity>?> GetUsersListByBankId(Guid bankId)
         {
             return await _dbSet.Where(user => user.BankId == bankId).ToListAsync();
         }

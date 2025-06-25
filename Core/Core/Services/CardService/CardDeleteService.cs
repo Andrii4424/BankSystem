@@ -20,7 +20,7 @@ namespace BankServices.CardService
             _cardRepository = cardRepository;
         }
 
-        public async Task DeleteCard(int cardId)
+        public async Task DeleteCard(Guid cardId)
         {
             CardEntity? card = await _cardRepository.GetValueByIdAsync(cardId);
             if (card != null) { _cardRepository.DeleteElement(card); }

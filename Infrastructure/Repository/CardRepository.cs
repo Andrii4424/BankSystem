@@ -19,7 +19,7 @@ namespace Infrastructure.Repository
             _dbSet = context.Set<CardEntity>();
         }
 
-        public Task<List<CardEntity>?> GetCardsListByBankId(int bankId)
+        public Task<List<CardEntity>?> GetCardsListByBankId(Guid bankId)
         {
             return _dbSet.Where(card => card.BankId == bankId).ToListAsync();
         }

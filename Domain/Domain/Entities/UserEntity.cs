@@ -13,9 +13,9 @@ namespace Core.Domain.Entities
     public class UserEntity : IHasId
     {
         [Key]
-        public int Id { get; init; }
+        public Guid Id { get; init; } = Guid.NewGuid();
 
-        public int BankId { get; init; }
+        public Guid BankId { get; init; }
 
         [ForeignKey("BankId")]
         public BankEntity Bank { get; init; }
@@ -45,7 +45,7 @@ namespace Core.Domain.Entities
 
         public UserEntity() { }
 
-        public UserEntity(int bankId, string financalNumber, string email, string fullName, int age, string nationality, string gender,
+        public UserEntity(Guid bankId, string financalNumber, string email, string fullName, int age, string nationality, string gender,
             bool isEmployeed, string? jobTitle)
         {
             BankId = bankId;

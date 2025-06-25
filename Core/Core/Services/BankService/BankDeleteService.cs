@@ -20,7 +20,7 @@ namespace BankServices.BankService
         }
 
         //Delete
-        public async Task DeleteBank(int bankId)
+        public async Task DeleteBank(Guid bankId)
         {
             BankEntity? bank = await _bankRepository.GetValueByIdAsync(bankId);
             if (bank != null) _bankRepository.DeleteElement(bank);

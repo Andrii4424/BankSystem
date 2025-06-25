@@ -8,6 +8,6 @@ namespace Abstractions
 {
     public interface IHasId
     {
-        int Id { get; init;}
+        Guid Id { get; init;}
     }
 }

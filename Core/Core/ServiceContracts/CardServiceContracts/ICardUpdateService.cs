@@ -10,7 +10,7 @@ namespace BankServicesContracts.ServicesContracts.CardServiceContracts
 {
     public interface ICardUpdateService
     {
-        public Task UpdateCard(int cardId, CardDto cardDto);
+        public Task UpdateCard(Guid cardId, CardDto cardDto);
 
     }
 }

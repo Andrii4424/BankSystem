@@ -9,9 +9,9 @@ namespace DTO.BankDto
 {
     public class CardDto : IValidatableObject
     {
-        [Range(0, int.MaxValue, ErrorMessage ="{0} cant be lesser than 0 or empty")]
+        [Required(ErrorMessage = "{0} has to be provided")]
         [Display(Name ="Bank id")]
-        public int BankId { get; init; }
+        public Guid BankId { get; init; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [StringLength(40, ErrorMessage = "{0} must be up to {1} characters")]

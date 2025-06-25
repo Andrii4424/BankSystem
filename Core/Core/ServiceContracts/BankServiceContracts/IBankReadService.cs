@@ -11,7 +11,7 @@ namespace BankServicesContracts.ServicesContracts.BankService
     public interface IBankReadService
     {
         public Task<List<BankEntity>?> GetAllBanksList();
-        public Task<BankEntity> GetBankModel(int bankId);
-        public Task<BankDto> GetBankDto(int bankId);
+        public Task<BankEntity> GetBankModel(Guid bankId);
+        public Task<BankDto> GetBankDto(Guid bankId);
     }
 }

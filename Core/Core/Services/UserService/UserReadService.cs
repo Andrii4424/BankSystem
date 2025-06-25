@@ -34,7 +34,7 @@ namespace BankServices.UserService
             return await _usersRepository.GetAllValuesAsync() as List<UserEntity>;
         }
 
-        public async Task<UserEntity> GetUserById(int userId, int bankId)
+        public async Task<UserEntity> GetUserById(Guid userId, Guid bankId)
         {
             UserEntity? user = await _usersRepository.GetValueByIdAsync(userId);
             if (user == null || user.BankId != bankId)
@@ -46,18 +46,18 @@ namespace BankServices.UserService
             return user;
         }
 
-        public async Task<List<UserEntity>?> GetUsersListByBankId(int bankId)
+        public async Task<List<UserEntity>?> GetUsersListByBankId(Guid bankId)
         {
             return await _usersRepository.GetUsersListByBankId(bankId);
         }
-        public async Task<UserDto> GetUserDto(int userId)
+        public async Task<UserDto> GetUserDto(Guid userId)
         {
             UserEntity? user = await _usersRepository.GetValueByIdAsync(userId);
             if(user == null) throw new ArgumentException("This user doesnt exist in this bank!");
             return await UserMapping.ToDto(user);
         }
 
-        public async Task<string> GetUsersBankName(int bankId)
+        public async Task<string> GetUsersBankName(Guid bankId)
         {
             return (await _bankRepository.GetValueByIdAsync(bankId)).BankName;
         }

@@ -12,12 +12,12 @@ namespace BankServicesContracts.ServicesContracts.UserServiceContracts
     {
         public Task<List<UserEntity>?> GetUsersList();
 
-        public Task<UserEntity> GetUserById(int userId, int bankId);
+        public Task<UserEntity> GetUserById(Guid userId, Guid bankId);
 
-        public Task<List<UserEntity>?> GetUsersListByBankId(int bankId);
+        public Task<List<UserEntity>?> GetUsersListByBankId(Guid bankId);
 
-        public Task<string> GetUsersBankName(int bankId);
+        public Task<string> GetUsersBankName(Guid bankId);
 
-        public Task<UserDto> GetUserDto(int userId);
+        public Task<UserDto> GetUserDto(Guid userId);
     }
 }

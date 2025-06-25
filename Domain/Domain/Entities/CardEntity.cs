@@ -12,9 +12,9 @@ namespace Entities.BanksEntities
     public class CardEntity:IHasId
     {
         [Key]
-        public int Id { get; init; }
+        public Guid Id { get; init; } = Guid.NewGuid();
 
-        public int BankId { get; init; }
+        public Guid BankId { get; init; }
 
         [ForeignKey("BankId")]
         public BankEntity Bank { get; set; }
@@ -36,7 +36,7 @@ namespace Entities.BanksEntities
 
         public CardEntity() { }
 
-        public CardEntity(int bankId, string cardType, string cardLevel, string cardName, double validityPeriod, int maxCreditLimit, string paymentSystem)
+        public CardEntity(Guid bankId, string cardType, string cardLevel, string cardName, double validityPeriod, int maxCreditLimit, string paymentSystem)
         {
             BankId = bankId;
             CardName = cardName;

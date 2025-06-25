@@ -5,6 +5,6 @@ namespace ApplicationCore.Domain.RepositoryContracts
 {
     public interface IUserRepository : IGenericRepository<UserEntity>
     {
-        public Task<List<UserEntity>?> GetUsersListByBankId(int bankId);
+        public Task<List<UserEntity>?> GetUsersListByBankId(Guid bankId);
     }
 }

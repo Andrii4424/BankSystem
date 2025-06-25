@@ -25,14 +25,14 @@ namespace UI.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{bankId:int}")]
-        public async Task<IActionResult> EmployeeInfo(int bankId)
+        [HttpGet("{bankId:Guid}")]
+        public async Task<IActionResult> EmployeeInfo(Guid bankId)
         {
             return Ok(await _employeeReadService.GetAllBankEmployeesList(bankId));
         }
 
-        [HttpPost("{bankId:int?}")]
-        public async Task<IActionResult> AddEmployee([FromRoute] int bankId, [FromForm] int userId, [FromForm] string JobTitle)
+        [HttpPost("{bankId:Guid?}")]
+        public async Task<IActionResult> AddEmployee([FromRoute] Guid bankId, [FromForm] Guid userId, [FromForm] string JobTitle)
         {
             if (!ModelState.IsValid)
             {
@@ -43,8 +43,8 @@ namespace UI.Controllers
             return Ok(await _employeeReadService.GetEmployeeDto(userId));
         }
 
-        [HttpPut("{bankId:int}/{userId:int}")]
-        public async Task<IActionResult> UpdateEmployee([FromRoute] int bankId, [FromRoute] int userId, [FromForm] string JobTitle)
+        [HttpPut("{bankId:Guid}/{userId:Guid}")]
+        public async Task<IActionResult> UpdateEmployee([FromRoute] Guid bankId, [FromRoute] Guid userId, [FromForm] string JobTitle)
         {
             if (!ModelState.IsValid)
             {
@@ -55,8 +55,8 @@ namespace UI.Controllers
             return Ok(await _employeeReadService.GetEmployeeDto(userId));
         }
 
-        [HttpDelete("{bankId:int}/{userId:int}")]
-        public async Task<IActionResult> DeleteEmployee([FromRoute] int bankId, [FromRoute] int userId)
+        [HttpDelete("{bankId:Guid}/{userId:Guid}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid bankId, [FromRoute] Guid userId)
         {
             await _employeeDeleteService.FireEmployee(userId);
             _logger.LogInformation("POST /update-employee -> Succes deleting employee for bankId: {BankId}, " +

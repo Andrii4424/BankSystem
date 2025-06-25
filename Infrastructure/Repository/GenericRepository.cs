@@ -16,7 +16,7 @@ namespace BankData.Repository
         private readonly BankAppContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public async Task<Boolean> IsObjectIdExists(int id)
+        public async Task<Boolean> IsObjectIdExists(Guid id)
         {
             return await _dbSet.AnyAsync(obj => obj.Id==id);
         }
@@ -26,7 +26,7 @@ namespace BankData.Repository
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T?> GetValueByIdAsync(int id)
+        public async Task<T?> GetValueByIdAsync(Guid id)
         {
             return await _dbSet.FirstOrDefaultAsync(obj => obj.Id==id);
         }

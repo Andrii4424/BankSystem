@@ -10,12 +10,12 @@ namespace BankServicesContracts.ServicesContracts.EmployeeServiceContracts
 {
     public interface IEmployeeReadService
     {
-        public Task<List<UserEntity>?> GetAllBankEmployeesList(int bankId);
+        public Task<List<UserEntity>?> GetAllBankEmployeesList(Guid bankId);
 
-        public Task<UserEntity> GetEmployeeById(int userId, int bankId);
+        public Task<UserEntity> GetEmployeeById(Guid userId, Guid bankId);
 
-        public Task<string> GetEmployeesBankName(int bankId);
+        public Task<string> GetEmployeesBankName(Guid bankId);
 
-        public Task<UserDto> GetEmployeeDto(int userId);
+        public Task<UserDto> GetEmployeeDto(Guid userId);
     }
 }

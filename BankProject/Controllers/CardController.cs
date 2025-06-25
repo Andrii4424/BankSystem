@@ -26,14 +26,14 @@ namespace UI.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{bankId:int}")]
-        public async Task<IActionResult> CardsInfo(int bankId)
+        [HttpGet("{bankId:Guid}")]
+        public async Task<IActionResult> CardsInfo(Guid bankId)
         {
             return Ok(await _cardReadService.GetCardsListByBankId(bankId));
         }
 
-        [HttpPost("{bankId:int}")]
-        public async Task<IActionResult> AddCard([FromRoute] int bankId, [FromForm] CardDto cardDto)
+        [HttpPost("{bankId:Guid}")]
+        public async Task<IActionResult> AddCard([FromRoute] Guid bankId, [FromForm] CardDto cardDto)
         {
             if (!ModelState.IsValid)
             {
@@ -44,9 +44,9 @@ namespace UI.Controllers
             return Ok(cardDto);
         }
 
-        [HttpPut("{bankId:int}/{cardId:int}")]
-        public async Task<IActionResult> UpdateCard([FromForm] CardDto cardDto, [FromRoute] int bankId,
-    [FromRoute] int cardId)
+        [HttpPut("{bankId:Guid}/{cardId:Guid}")]
+        public async Task<IActionResult> UpdateCard([FromForm] CardDto cardDto, [FromRoute] Guid bankId,
+    [FromRoute] Guid cardId)
         {
             if (!ModelState.IsValid)
             {
@@ -57,8 +57,8 @@ namespace UI.Controllers
             return Ok(cardDto);
         }
 
-        [HttpDelete("{bankId:int}/{cardId:int}")]
-        public async Task<IActionResult> DeleteCard([FromRoute] int bankId, int cardId)
+        [HttpDelete("{bankId:Guid}/{cardId:Guid}")]
+        public async Task<IActionResult> DeleteCard([FromRoute] Guid bankId, Guid cardId)
         {
             await _cardDeleteService.DeleteCard(cardId);
             _logger.LogInformation("POST /delete-card -> Success deleting card for bankId: {BankId}, cardId: {CardId}", bankId, cardId);
