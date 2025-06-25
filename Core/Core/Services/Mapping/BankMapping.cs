@@ -33,5 +33,15 @@ namespace ApplicationCore.Core.Services.Mapping
             };
             return bankDto;
         }
+
+        public static List<BankDto> ToDtoList(List<BankEntity>? bankEntities)
+        {
+            List<BankDto> bankDtos = new List<BankDto>();
+            foreach(BankEntity bank in bankEntities)
+            {
+                bankDtos.Add(ToDto(bank));
+            }
+            return bankDtos;
+        }
     }
 }

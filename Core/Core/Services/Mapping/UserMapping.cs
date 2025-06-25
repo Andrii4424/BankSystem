@@ -36,5 +36,15 @@ namespace ApplicationCore.Core.Services.Mapping
             };
             return userDto;
         }
+
+        public static async Task<List<UserDto>> ToDtoList(List<UserEntity>? users)
+        {
+            List<UserDto> usersDtos = new List<UserDto>();
+            foreach (UserEntity user in users)
+            {
+                usersDtos.Add(await ToDto(user));
+            }
+            return usersDtos;
+        }
     }
 }

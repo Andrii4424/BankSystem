@@ -46,7 +46,7 @@ namespace UI.Controllers
             /// Showing bank info, bank serches by id
             /// </summary>
             /// <returns></returns>
-            BankEntity bank = await _bankReadService.GetBankModel(bankId.Value);
+            BankDto bank = await _bankReadService.GetBankModel(bankId.Value);
             return Ok(bank);
         }
 

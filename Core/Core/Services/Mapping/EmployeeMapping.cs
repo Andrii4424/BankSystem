@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Entities;
+using DTO.BankDto;
 using DTO.PersonDto;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,15 @@ namespace ApplicationCore.Core.Services.Mapping
                 JobTitle = user.JobTitle,
             };
             return userDto;
+        }
+
+        public static async Task<List<UserDto>> ToDtoList(List<UserEntity>? users)
+        {
+            List<UserDto> employeesDtos = new List<UserDto>();
+            foreach (UserEntity employee in users) {
+                employeesDtos.Add(await ToDto(employee));
+            }
+            return employeesDtos;
         }
     }
 }

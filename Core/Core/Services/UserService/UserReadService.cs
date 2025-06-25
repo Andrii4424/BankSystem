@@ -29,12 +29,12 @@ namespace BankServices.UserService
             _bankRepository = bankRepository;
         }
 
-        public async Task<List<UserEntity>?> GetUsersList()
+        public async Task<List<UserDto>?> GetUsersList()
         {
-            return await _usersRepository.GetAllValuesAsync() as List<UserEntity>;
+            return await UserMapping.ToDtoList(await _usersRepository.GetAllValuesAsync() as List<UserEntity>);
         }
 
-        public async Task<UserEntity> GetUserById(Guid userId, Guid bankId)
+        public async Task<UserDto> GetUserById(Guid userId, Guid bankId)
         {
             UserEntity? user = await _usersRepository.GetValueByIdAsync(userId);
             if (user == null || user.BankId != bankId)
@@ -43,18 +43,12 @@ namespace BankServices.UserService
                     "{BankId}", userId, bankId);
                 throw new ArgumentException("This user doesnt exist in this bank!");
             }
-            return user;
+            return await UserMapping.ToDto(user); ;
         }
 
-        public async Task<List<UserEntity>?> GetUsersListByBankId(Guid bankId)
+        public async Task<List<UserDto>?> GetUsersListByBankId(Guid bankId)
         {
-            return await _usersRepository.GetUsersListByBankId(bankId);
-        }
-        public async Task<UserDto> GetUserDto(Guid userId)
-        {
-            UserEntity? user = await _usersRepository.GetValueByIdAsync(userId);
-            if(user == null) throw new ArgumentException("This user doesnt exist in this bank!");
-            return await UserMapping.ToDto(user);
+            return await UserMapping.ToDtoList(await _usersRepository.GetUsersListByBankId(bankId));
         }
 
         public async Task<string> GetUsersBankName(Guid bankId)

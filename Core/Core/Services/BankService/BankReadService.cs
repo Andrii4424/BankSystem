@@ -24,13 +24,13 @@ namespace BankServices.BankService
             _logger = logger;
         }
 
-        public async Task<List<BankEntity>?> GetAllBanksList()
+        public async Task<List<BankDto>?> GetAllBanksList()
         {
-            return await _bankRepository.GetAllValuesAsync() as List<BankEntity>;
+            return BankMapping.ToDtoList(await _bankRepository.GetAllValuesAsync() as List<BankEntity>);
         }
 
 
-        public async Task<BankEntity> GetBankModel(Guid bankId)
+        public async Task<BankDto> GetBankModel(Guid bankId)
         {
             using (SerilogTimings.Operation.Time("Time for GetBankModel for bankId: {BankId}", bankId))
             {
@@ -40,15 +40,8 @@ namespace BankServices.BankService
                     _logger.LogWarning("GetBankModel: Bank with this id doesnt exist, bankId: {BankId}", bankId);
                     throw new ArgumentException("This bank doesnt exist!");
                 }
-                return bank;
+                return BankMapping.ToDto(bank);
             }
-        }
-
-        public async Task<BankDto> GetBankDto(Guid bankId)
-        {
-            BankEntity? bankEntity = await _bankRepository.GetValueByIdAsync(bankId);
-            if (bankEntity == null) throw new ArgumentException("This bank doesnt exist!");
-            return BankMapping.ToDto(bankEntity);
         }
     }
 }

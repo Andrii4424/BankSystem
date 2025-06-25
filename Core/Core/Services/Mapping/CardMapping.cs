@@ -31,5 +31,15 @@ namespace ApplicationCore.Core.Services.Mapping
             };
             return cardDto;
         }
+
+        public static async Task<List<CardDto>> ToDtoList(List<CardEntity>? cardEntities)
+        {
+            List<CardDto> cardDtos = new List<CardDto>();
+            foreach (CardEntity card in cardEntities)
+            {
+                cardDtos.Add(await ToDto(card));
+            }
+            return cardDtos;
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace UI.Controllers
                 return BadRequest(errors);
             }
             await _employeeAddService.AddEmployee(bankId, userId, JobTitle);
-            return Ok(await _employeeReadService.GetEmployeeDto(userId));
+            return Ok(await _employeeReadService.GetEmployeeById(userId, bankId));
         }
 
         [HttpPut("{bankId:Guid}/{userId:Guid}")]
@@ -52,7 +52,7 @@ namespace UI.Controllers
                 return BadRequest(errors);
             }
             await _employeeUpdateService.UpdateEmployee(userId, JobTitle);
-            return Ok(await _employeeReadService.GetEmployeeDto(userId));
+            return Ok(await _employeeReadService.GetEmployeeById(userId, bankId));
         }
 
         [HttpDelete("{bankId:Guid}/{userId:Guid}")]
